@@ -6,8 +6,10 @@ Code base for for juju embedded card system for charm, bundle and profiles.
 
 To run, do the following:
 
-    npm install
-		gulp run
+```bash
+npm install
+gulp run
+```
 
 This will install all requirements and sets up watchers to generate the CSS and
 JS to render the cards.
