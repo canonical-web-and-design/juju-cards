@@ -1,0 +1,282 @@
+////
+/// @author       Anthony Dillon
+/// @link         https://github.com/CanonicalLtd/juju-cards
+/// @since        0.0.1
+////
+
+/// Bundle card styling
+/// @group Cards
+/// @example
+/// <div class="juju-card">
+///   <div class="bundle-card">
+///     ...
+///   </div>
+/// </div>
+@mixin bundle {
+  .bundle-card {
+    &__header {
+      margin-bottom: 20px;
+    }
+
+    &__image {
+      float: left;
+      margin-right: 20px;
+      width: 50px;
+      height: 50px;
+    }
+
+    &__title {
+      margin: 0;
+      font-weight: 300;
+      font-size: 18px;
+    }
+
+    &__meta,
+    &__meta--bundle,
+    &__by {
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      list-style: none;
+      padding-left: 0;
+      margin-top: 5px;
+
+      a:link,
+      a:visited {
+        color: $brand-color;
+        text-decoration: none;
+      }
+    }
+
+    &__meta-item--by,
+    &__meta-item--deploys,
+    &__meta-item--series {
+      float: left;
+      margin-right: 5px;
+    }
+
+    &__meta-item--deploys,
+    &__meta-item--series {
+      display: none;
+    }
+
+    &__main {
+      margin-bottom: 20px;
+    }
+
+    &__main--bundle {
+      margin: 20px;
+    }
+
+    &__actions {
+      list-style: none;
+      padding-left: 0;
+      margin: 10px 0 0;
+    }
+
+    &__actions-item--demo {
+      display: none;
+    }
+
+    &__actions-field {
+      box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, .12);
+      background-color: $white;
+      box-sizing: border-box;
+      border: 1px solid $light-grey;
+      padding: 10px;
+      width: 100%;
+      color: $mid-grey;
+      font-size: 16px;
+      font-weight: 300;
+      cursor: text;
+      margin: 5px 0 20px;
+    }
+
+    &__actions-field,
+    &__actions-label {
+      display: none;
+    }
+
+    &__details-button,
+    &__add-button {
+
+      &--primary {
+        @include button($white, $brand-color, null);
+      }
+
+      &--secondary {
+        @include button($text-color, $white, $secondary-button-border);
+      }
+    }
+
+    &__deploys {
+      margin: 10px 0;
+      font-weight: 300;
+      font-size: 23px;
+      text-align: center;
+    }
+
+    &__footer {
+      margin-top: 20px;
+    }
+
+    &__footer--bundle {
+      margin: 20px 20px 0;
+    }
+
+    &__footer-logo {
+      vertical-align: middle;
+      margin-right: 10px;
+      width: 40px;
+    }
+
+    &__footer-note {
+      display: inline;
+      font-size: 13px;
+      color: $mid-grey;
+      float: right;
+      margin: 0;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+
+    &__image-container {
+      background-color: $canvas-bg;
+      padding: 20px;
+    }
+
+    &__bundle-image {
+      max-width: 100%;
+      height: auto;
+      max-height: 180px;
+    }
+
+    &__container--bundle {
+      .juju-card__header {
+        border-bottom: 1px solid $light-grey;
+      }
+
+      .juju-card__meta {
+        margin: 0;
+      }
+    }
+  }
+
+  .juju-card--medium,
+  .juju-card--large {
+    .juju-card {
+
+      &__image {
+        width: 96px;
+        height: 96px;
+      }
+
+      &__title {
+        position: relative;
+        top: 15px;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+
+      &__meta {
+        margin-bottom: 25px;
+        font-size: 1.125em;
+      }
+
+      &__meta-item--by,
+      &__meta-item--deploys,
+      &__meta-item--series {
+        display: inline-block;
+
+        &::after {
+          content: '•';
+          color: $mid-grey;
+          padding-left: 5px;
+          position: relative;
+          top: 2px;
+        }
+
+        &:last-of-type::after {
+          content: '';
+          padding-left: 0;
+        }
+      }
+
+      &__actions-item--demo,
+      &__actions-item--details, {
+        @extend %half-half;
+      }
+
+      &__actions-item--demo {
+        display: inline-block;
+      }
+
+      &__footer-logo {
+        width: 60px;
+      }
+
+      &__bundle-image {
+        max-height: 282px;
+      }
+
+      &__container--bundle {
+        .juju-card__meta {
+          margin: 0;
+        }
+
+        .juju-card__title {
+          top: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .juju-card--large {
+    .juju-card {
+      &__container--charm {
+        .juju-card__header,
+        .juju-card__main {
+          @extend %half-half;
+        }
+      }
+
+      &__main {
+        margin-right: 0;
+      }
+
+      &__main--bundle {
+        .juju-card__meta,
+        .juju-card__actions {
+          @extend %half-half;
+        }
+      }
+
+      &__actions-item--demo,
+      &__actions-item--details, {
+        width: 100%;
+      }
+
+      &__title {
+        top: 10px;
+        margin-bottom: 15px;
+        font-size: 32px;
+      }
+
+      &__meta {
+        margin-bottom: 0;
+      }
+
+      &__by {
+        font-size: 23px;
+      }
+
+      &__bundle-image {
+        max-height: 562px;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+////
+/// @author       Anthony Dillon
+/// @link         https://github.com/CanonicalLtd/juju-cards
+/// @since        0.0.1
+////
+
+/// Default button pattern styles
+/// @group Buttons
+%button-pattern {
+  font-smoothing: subpixel-antialiased;
+  font-size: 1em;
+  display: inline-block;
+  box-sizing: border-box;
+  width: auto;
+  margin: 0;
+  padding: 11px 24px;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  border-radius: 2px;
+  outline: none;
+  font-weight: 300;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/// Align elements horizonally 50%
+%half-half {
+  width: 49%;
+  display: inline-block;
+  margin-right: 2%;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,48 @@
+////
+/// @author       Anthony Dillon
+/// @link         https://github.com/CanonicalLtd/juju-cards
+/// @since        0.0.1
+////
+
+/// Base card styling
+/// @group Cards
+/// @example
+/// <div class="juju-card">
+///   ...
+/// </div>
+@mixin base {
+  .juju-card {
+    color: $text-color;
+    font-family: Ubuntu, Arial, "libra sans", sans-serif;
+    font-weight: 300;
+    font-size: $base-font-size;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .35);
+    background: $white;
+    width: 100%;
+    box-sizing: border-box;
+
+    &__error {
+      display: block;
+    }
+
+    &__container {
+      opacity: 0;
+      transition: opacity .5s;
+      padding: 20px;
+
+      &--bundle {
+        padding: 0 0 20px;
+      }
+    }
+
+    &.juju-card--rendered {
+      .juju-card__error {
+        display: none;
+      }
+
+      .juju-card__container {
+        opacity: 1;
+      }
+    }
+  }
+}

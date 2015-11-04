@@ -1,4 +1,6 @@
 linters:
+  NestingDepth:
+    max_depth: 4
   Indentation:
     enabled: true
   PropertySortOrder:
@@ -11,3 +13,5 @@ linters:
     enabled: false
   QualifyingElement:
     allow_element_with_attribute: true
+  SelectorFormat:
+    convention: hyphenated_BEM
