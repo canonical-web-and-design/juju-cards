@@ -177,7 +177,12 @@
       }
 
       &__actions-item--demo {
-        display: inline-block;
+        //display: inline-block;
+      }
+
+      &__actions-field,
+      &__actions-label {
+        display: block;
       }
 
       &__footer-logo {
@@ -190,7 +195,9 @@
     .charm-card {
       &__header,
       &__main {
-        @extend %half-half;
+        width: 49%;
+        display: inline-block;
+        margin-right: 2%;
       }
 
       &__main {
