@@ -14,8 +14,11 @@
 /// </div>
 @mixin bundle {
   .bundle-card {
+    padding: 0 0 20px;
+
     &__header {
       margin-bottom: 20px;
+      border-bottom: 1px solid $light-grey;
     }
 
     &__image {
@@ -32,7 +35,6 @@
     }
 
     &__meta,
-    &__meta--bundle,
     &__by {
       display: inline-block;
       font-size: 16px;
@@ -61,10 +63,6 @@
     }
 
     &__main {
-      margin-bottom: 20px;
-    }
-
-    &__main--bundle {
       margin: 20px;
     }
 
@@ -117,10 +115,6 @@
     }
 
     &__footer {
-      margin-top: 20px;
-    }
-
-    &__footer--bundle {
       margin: 20px 20px 0;
     }
 
@@ -154,20 +148,14 @@
       max-height: 180px;
     }
 
-    &__container--bundle {
-      .juju-card__header {
-        border-bottom: 1px solid $light-grey;
-      }
-
-      .juju-card__meta {
-        margin: 0;
-      }
+    &__meta {
+      margin: 0;
     }
   }
 
   .juju-card--medium,
   .juju-card--large {
-    .juju-card {
+    .bundle-card {
 
       &__image {
         width: 96px;
@@ -175,15 +163,13 @@
       }
 
       &__title {
-        position: relative;
-        top: 15px;
         font-size: 1.5em;
-        margin-bottom: 20px;
       }
 
       &__meta {
         margin-bottom: 25px;
         font-size: 1.125em;
+        margin: 0;
       }
 
       &__meta-item--by,
@@ -221,38 +207,19 @@
       &__bundle-image {
         max-height: 282px;
       }
-
-      &__container--bundle {
-        .juju-card__meta {
-          margin: 0;
-        }
-
-        .juju-card__title {
-          top: 0;
-          margin-bottom: 0;
-        }
-      }
     }
   }
 
   .juju-card--large {
-    .juju-card {
-      &__container--charm {
-        .juju-card__header,
-        .juju-card__main {
-          @extend %half-half;
-        }
-      }
+    .bundle-card {
 
       &__main {
         margin-right: 0;
       }
 
-      &__main--bundle {
-        .juju-card__meta,
-        .juju-card__actions {
-          @extend %half-half;
-        }
+      &__meta,
+      &__actions {
+        @extend %half-half;
       }
 
       &__actions-item--demo,
@@ -261,13 +228,13 @@
       }
 
       &__title {
-        top: 10px;
-        margin-bottom: 15px;
         font-size: 32px;
       }
 
       &__meta {
         margin-bottom: 0;
+        margin-top: 10px;
+        vertical-align: top;
       }
 
       &__by {

@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 function init() {
   let cards = document.querySelectorAll('.' + targetClass);
+
   Array.from(cards).forEach(function(card) {
     let id = card.dataset.id;
     if(id !== null) {
@@ -21,6 +22,7 @@ function init() {
       console.warn('Found card with no ID');
     }
   });
+  updateHead();
 }
 
 function getData(card, id) {
@@ -43,8 +45,6 @@ function decideType(card, data) {
 }
 
 function renderBundle(card, data) {
-  updateHead();
-
   let name = data.Meta['id-name'].Name;
   let id = data.Id;
   let series = data.Meta['id-series'].Series;
@@ -55,31 +55,31 @@ function renderBundle(card, data) {
   let image = 'https://api.jujucharms.com/charmstore/v4/bundle/'+name+'/diagram.svg';
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
 
-  let dom = `<div class="juju-card__container juju-card__container--bundle">` +
-      `<header class="juju-card__header">` +
-        `<div class="juju-card__image-container">` +
-          `<object width="100%" class="juju-card__bundle-image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg"></object>` +
+  let dom = `<div class="juju-card__container bundle-card">` +
+      `<header class="bundle-card__header">` +
+        `<div class="bundle-card__image-container">` +
+          `<object wmode="transparent" width="100%" class="bundle-card__bundle-image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg"></object>` +
         `</div>` +
       `</header>` +
-      `<main class="juju-card__main--bundle">` +
-        `<div class="juju-card__meta">` +
-          `<h1 class="juju-card__title">${name}</h1>` +
-          `<p class="juju-card__by">by <a href="${ownerLink}">${owner}</a></h1>` +
-          `<label class="juju-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
-          `<input class="juju-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
+      `<main class="bundle-card__main">` +
+        `<div class="bundle-card__meta">` +
+          `<h1 class="bundle-card__title">${name}</h1>` +
+          `<p class="bundle-card__by">by <a href="${ownerLink}">${owner}</a></h1>` +
+          `<label class="bundle-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
+          `<input class="bundle-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
         `</div>` +
-        `<ul class="juju-card__actions">` +
-          `<li class="juju-card__actions-item--demo">` +
-            `<a href="${addLink}" class="juju-card__add-button--secondary">Add to demo</a>` +
+        `<ul class="bundle-card__actions">` +
+          `<li class="bundle-card__actions-item--demo">` +
+            `<a href="${addLink}" class="bundle-card__add-button--secondary">Add to demo</a>` +
           `</li>` +
-          `<li class="juju-card__actions-item--details">` +
-            `<a href="${detailsLink}" class="juju-card__details-button--primary">View details</a>` +
+          `<li class="bundle-card__actions-item--details">` +
+            `<a href="${detailsLink}" class="bundle-card__details-button--primary">View details</a>` +
           `</li>` +
         `</ul>` +
       `</main>` +
-      `<footer class="juju-card__footer--bundle">` +
-        `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="juju-card__footer-logo" /></a>` +
-        `<p class="juju-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
+      `<footer class="bundle-card__footer">` +
+        `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
+        `<p class="bundle-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
       `</footer>` +
     `</div>` +
     `<div class="juju-card__error">` +
@@ -92,8 +92,6 @@ function renderBundle(card, data) {
 }
 
 function renderCharm(card, data) {
-  updateHead();
-
   let name = data.Meta['id-name'].Name;
   let id = data.Id;
   let image = 'https://api.jujucharms.com/v4/'+getImageID(id)+'/icon.svg';
@@ -105,30 +103,30 @@ function renderCharm(card, data) {
   let detailsLink = 'https://jujucharms.com/'+name+'/'+series+'/'+revision;
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
 
-  let dom = `<div class="juju-card__container juju-card__container--charm">` +
-      `<header class="juju-card__header">` +
-        `<img src="${image}" alt="${name}" class="juju-card__image" />` +
-        `<h1 class="juju-card__title">${name}</h1>` +
-        `<ul class="juju-card__meta">` +
-          `<li class="juju-card__meta-item--by">by <a href="${ownerLink}">${owner}</a></li>` +
-          `<li class="juju-card__meta-item--series">${series}</li>` +
+  let dom = `<div class="juju-card__container charm-card">` +
+      `<header class="charm-card__header">` +
+        `<img src="${image}" alt="${name}" class="charm-card__image" />` +
+        `<h1 class="charm-card__title">${name}</h1>` +
+        `<ul class="charm-card__meta">` +
+          `<li class="charm-card__meta-item--by">by <a href="${ownerLink}">${owner}</a></li>` +
+          `<li class="charm-card__meta-item--series">${series}</li>` +
         `</ul>` +
       `</header>` +
-      `<main class="juju-card__main">` +
-        `<label class="juju-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
-        `<input class="juju-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
-        `<ul class="juju-card__actions">` +
-          `<li class="juju-card__actions-item--demo">` +
-            `<a href="${addLink}" class="juju-card__add-button--secondary">Add to demo</a>` +
+      `<main class="charm-card__main">` +
+        `<label class="charm-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
+        `<input class="charm-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
+        `<ul class="charm-card__actions">` +
+          `<li class="charm-card__actions-item--demo">` +
+            `<a href="${addLink}" class="charm-card__add-button--secondary">Add to demo</a>` +
           `</li>` +
-          `<li class="juju-card__actions-item--details">` +
-            `<a href="${detailsLink}" class="juju-card__details-button--primary">View details</a>` +
+          `<li class="charm-card__actions-item--details">` +
+            `<a href="${detailsLink}" class="charm-card__details-button--primary">View details</a>` +
           `</li>` +
         `</ul>` +
       `</main>` +
-      `<footer class="juju-card__footer">` +
-        `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="juju-card__footer-logo" /></a>` +
-        `<p class="juju-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
+      `<footer class="charm-card__footer">` +
+        `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
+        `<p class="charm-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
       `</footer>` +
     `</div>` +
     `<div class="juju-card__error">` +
