@@ -56,6 +56,7 @@ function renderBundle(card, data) {
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
 
   let dom = `<div class="juju-card__container bundle-card">` +
+      `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
       `<header class="bundle-card__header">` +
         `<div class="bundle-card__image-container">` +
           `<object wmode="transparent" width="100%" class="bundle-card__bundle-image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg"></object>` +
@@ -65,15 +66,14 @@ function renderBundle(card, data) {
         `<div class="bundle-card__meta">` +
           `<h1 class="bundle-card__title">${name}</h1>` +
           `<p class="bundle-card__by">by <a href="${ownerLink}">${owner}</a></h1>` +
-          `<label class="bundle-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
-          `<input class="bundle-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
         `</div>` +
         `<ul class="bundle-card__actions">` +
-          `<li class="bundle-card__actions-item--demo">` +
-            `<a href="${addLink}" class="bundle-card__add-button--secondary">Add to demo</a>` +
-          `</li>` +
           `<li class="bundle-card__actions-item--details">` +
-            `<a href="${detailsLink}" class="bundle-card__details-button--primary">View details</a>` +
+            `<label class="bundle-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
+            `<input class="bundle-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
+          `</li>` +
+          `<li class="bundle-card__actions-item--demo">` +
+            `<a href="${addLink}" class="bundle-card__add-button--primary">Get started</a>` +
           `</li>` +
         `</ul>` +
       `</main>` +
@@ -104,6 +104,7 @@ function renderCharm(card, data) {
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
 
   let dom = `<div class="juju-card__container charm-card">` +
+      `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
       `<header class="charm-card__header">` +
         `<img src="${image}" alt="${name}" class="charm-card__image" />` +
         `<h1 class="charm-card__title">${name}</h1>` +
@@ -113,14 +114,13 @@ function renderCharm(card, data) {
         `</ul>` +
       `</header>` +
       `<main class="charm-card__main">` +
-        `<label class="charm-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
-        `<input class="charm-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
         `<ul class="charm-card__actions">` +
+        `<li class="charm-card__actions-item--details">` +
+          `<label class="charm-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
+          `<input class="charm-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
+        `</li>` +
           `<li class="charm-card__actions-item--demo">` +
-            `<a href="${addLink}" class="charm-card__add-button--secondary">Add to demo</a>` +
-          `</li>` +
-          `<li class="charm-card__actions-item--details">` +
-            `<a href="${detailsLink}" class="charm-card__details-button--primary">View details</a>` +
+            `<a href="${addLink}" class="charm-card__add-button--primary">Get started</a>` +
           `</li>` +
         `</ul>` +
       `</main>` +

@@ -11,6 +11,8 @@
   @extend %button-pattern;
   color: $button-color;
   background: $button-bg;
+  position: relative;
+  z-index: 10;
   @if $border-color != null {
     border: 1px solid $border-color;
   }
