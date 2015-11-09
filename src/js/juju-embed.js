@@ -25,18 +25,21 @@ function init() {
   updateHead();
 }
 
+// getData
+// Concatenates the api url and fetches it
 function getData(card, id) {
   let apiUrl = apiAddress + id + '/meta/any' + apiIncludes;
-
   get(apiUrl).then(function(response) {
-    let data = JSON.parse(response);
-    decideType(card, data);
+    let data = response;
+    detectType(card, data);
   }, function(error) {
     console.warn(error);
   });
 }
 
-function decideType(card, data) {
+// detectType
+// Checks if the element is a bundle or charm and renders the correct function
+function detectType(card, data) {
   if (data.Meta['id-series'].Series === 'bundle') {
     renderBundle(card, data);
   } else {
@@ -44,6 +47,8 @@ function decideType(card, data) {
   }
 }
 
+// renderBundle
+// Split out required data and insert card markup
 function renderBundle(card, data) {
   let name = data.Meta['id-name'].Name;
   let id = data.Id;
@@ -73,7 +78,7 @@ function renderBundle(card, data) {
             `<input class="bundle-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
           `</li>` +
           `<li class="bundle-card__actions-item--demo">` +
-            `<a href="${addLink}" class="bundle-card__add-button--primary">Get started</a>` +
+            `<a href="${addLink}" class="bundle-card__add-button--primary">Deploy with Juju</a>` +
           `</li>` +
         `</ul>` +
       `</main>` +
@@ -91,6 +96,8 @@ function renderBundle(card, data) {
   card.classList.add(getWidthClass(card));
 }
 
+// renderCharm
+// Split out required data and insert card markup
 function renderCharm(card, data) {
   let name = data.Meta['id-name'].Name;
   let id = data.Id;
@@ -104,6 +111,7 @@ function renderCharm(card, data) {
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
 
   let dom = `<div class="juju-card__container charm-card">` +
+      `<div class="charm-card__background"></div>` +
       `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
       `<header class="charm-card__header">` +
         `<img src="${image}" alt="${name}" class="charm-card__image" />` +
@@ -120,7 +128,7 @@ function renderCharm(card, data) {
           `<input class="charm-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
         `</li>` +
           `<li class="charm-card__actions-item--demo">` +
-            `<a href="${addLink}" class="charm-card__add-button--primary">Get started</a>` +
+            `<a href="${addLink}" class="charm-card__add-button--primary">Deploy with Juju</a>` +
           `</li>` +
         `</ul>` +
       `</main>` +
@@ -138,6 +146,8 @@ function renderCharm(card, data) {
     card.classList.add(getWidthClass(card));
 }
 
+// updateHead
+// Add the required stylesheet and font to the page head
 function updateHead() {
   // Load the card stylesheet
   let css  = document.createElement('link');
@@ -151,10 +161,13 @@ function updateHead() {
   let font = document.createElement('link');
   font.rel  = 'stylesheet';
   font.type = 'text/css';
-  font.href = 'https://fonts.googleapis.com/css?family=Ubuntu:300';
+  font.href = 'https://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu:300';
   document.getElementsByTagName('head')[0].appendChild(font);
 }
 
+// getWidthClass
+// Checks the width of the card container and returns the correct class to
+// attach element queries
 function getWidthClass(el) {
   let width = el.offsetWidth;
   let queryClass = 'juju-card--small';
@@ -177,19 +190,24 @@ let getImageID = (id) => id.toString().replace('cs:', '');
 // Wraps a XMLHttpRequest in a promise.
 let get = (url) => {
   return new Promise(function(resolve, reject) {
-    var req = new XMLHttpRequest();
-    req.open('GET', url);
 
-    req.onload = function() {
-      if (req.status == 200) {
-        resolve(req.response);
-      } else {
-        reject(Error(req.statusText));
-      }
-    };
-    req.onerror = function() {
-      reject(Error("Network Error"));
-    };
-    req.send();
+    fetch(url).then(r => r.json())
+    .then(data => resolve(data))
+    .catch(e => reject(Error(data.statusText)))
+
+    // var req = new XMLHttpRequest();
+    // req.open('GET', url);
+    //
+    // req.onload = function() {
+    //   if (req.status == 200) {
+    //     resolve(req.response);
+    //   } else {
+    //     reject(Error(req.statusText));
+    //   }
+    // };
+    // req.onerror = function() {
+    //   reject(Error("Network Error"));
+    // };
+    // req.send();
   });
 }

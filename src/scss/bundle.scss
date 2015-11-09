@@ -17,6 +17,10 @@
     padding: 0 0 20px;
     position: relative;
 
+    &:hover {
+      background-color: $hover-background;
+    }
+
     &__link {
       text-indent: -9999px;
       display: block;
@@ -30,7 +34,7 @@
 
     &__header {
       margin-bottom: 20px;
-      border-bottom: 1px solid $light-grey;
+      border-bottom: 1px solid $border-color;
     }
 
     &__image {
@@ -91,11 +95,15 @@
     }
 
     &__actions-field {
+      font-family: "Ubuntu Mono", "Consolas", "Monaco", "Lucida Console", "Courier New", Courier, monospace;
       box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, .12);
       background-color: $white;
+      background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 15.999999"><path opacity=".212" fill="none" d="M0 0h16v16H0z"/><path style="line-height:125%;-inkscape-font-specification:Ubuntu;text-align:center" d="M2.666 2C.888 2 0 2 0 4.068v8.866C0 15 .888 15 2.666 15h10.668C15.112 15 16 15 16 12.934v-8.8C16 2.002 15.112 2 13.334 2H2.666zm1.28 1.89h1.1v1.143c.34.028.643.078.91.15.27.062.48.127.636.19L6.328 6.42c-.205-.078-.448-.152-.73-.223-.276-.07-.593-.105-.953-.105-.382 0-.67.07-.86.213-.19.134-.285.32-.285.56 0 .14.028.26.084.36.056.09.143.176.256.254.113.07.25.14.412.21.162.065.346.132.55.203.29.113.56.232.815.36.26.12.487.265.678.435.19.162.34.356.445.582.113.225.17.494.17.804 0 .466-.144.868-.433 1.207-.29.34-.767.56-1.43.658v1.324H3.945V11.97c-.508-.037-.922-.104-1.24-.202-.31-.106-.542-.2-.697-.286l.36-1.005c.225.113.496.214.814.306.324.092.692.14 1.1.14.488 0 .824-.073 1.007-.214.19-.15.286-.343.286-.583 0-.162-.04-.304-.117-.424-.08-.12-.188-.226-.33-.318-.14-.092-.31-.176-.507-.254-.19-.077-.404-.157-.637-.24-.22-.08-.437-.168-.656-.267-.212-.1-.405-.218-.582-.36-.17-.148-.306-.324-.412-.53-.106-.203-.16-.454-.16-.75 0-.488.146-.902.435-1.24.29-.347.735-.568 1.335-.667V3.89zM8 11.987h3.99v.996H8v-.996z" font-size="15" font-family="Ubuntu" letter-spacing="0" word-spacing="0" text-anchor="middle" fill="gray"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 10px center;
       box-sizing: border-box;
       border: 1px solid $light-grey;
-      padding: 10px;
+      padding: 10px 10px 10px 35px;
       width: 100%;
       color: $mid-grey;
       font-size: 16px;
@@ -109,7 +117,7 @@
     &__add-button {
 
       &--primary {
-        @include button($white, $brand-color, null);
+        @include button($text-color, $white, $light-grey);
       }
     }
 
