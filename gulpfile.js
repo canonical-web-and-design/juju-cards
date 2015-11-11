@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     util = require('util'),
     babel = require('gulp-babel'),
     eslint = require('gulp-eslint'),
-    gls = require('gulp-live-server');
+    gls = require('gulp-live-server'),
+    mocha = require('gulp-mocha');
 
 /* Helper functions */
 function throwSassError(sassError) {
@@ -69,6 +70,17 @@ gulp.task('jslint', function() {
       }))
       .pipe(eslint.format())
       .pipe(eslint.failOnError());
+});
+
+gulp.task('jstest', function () {
+  return gulp.src('src/tests/*.js')
+    .pipe(mocha())
+    .once('error', function () {
+      process.exit(1);
+    })
+    .once('end', function () {
+      process.exit();
+    });
 });
 
 gulp.task('build', ['html', 'sasslint', 'sass', 'babel']);
