@@ -73,7 +73,7 @@ gulp.task('jslint', function() {
 });
 
 gulp.task('jstest', function () {
-  return gulp.src('src/tests/*.js')
+  return gulp.src('src/test/*.js')
     .pipe(mocha())
     .once('error', function () {
       process.exit(1);
