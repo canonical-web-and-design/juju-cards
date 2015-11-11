@@ -30,8 +30,12 @@ function init() {
 function getData(card, id) {
   let apiUrl = apiAddress + id + '/meta/any' + apiIncludes;
   get(apiUrl).then(function(response) {
-    let data = response;
-    detectType(card, data);
+    console.log(response);
+    if (!response.Message) {
+      detectType(card, response);
+    } else {
+      reportError(card, response.Message);
+    }
   }, function(error) {
     console.warn(error);
   });
@@ -56,9 +60,9 @@ function renderBundle(card, data) {
   let revision = data.Meta.id.Revision;
   let ownerLink = 'https://launchpad.net/~'+data.Meta['extra-info']['bzr-owner'];
   let owner = data.Meta['extra-info']['bzr-owner'];
-  let detailsLink = 'https://jujucharms.com/'+name+'/'+series+'/'+revision;
-  let image = 'https://api.jujucharms.com/charmstore/v4/bundle/'+name+'/diagram.svg';
-  let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
+  let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
+  let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}/diagram.svg`;
+  let addLink = `https://demo.jujucharms.com/?deploy-target=${id}`;
 
   let dom = `<div class="juju-card__container bundle-card">` +
       `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
@@ -86,9 +90,6 @@ function renderBundle(card, data) {
         `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
         `<p class="bundle-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
       `</footer>` +
-    `</div>` +
-    `<div class="juju-card__error">` +
-      `<p class="juju-card__error-message"></p>` +
     `</div>`;
 
   card.innerHTML = dom;
@@ -107,11 +108,10 @@ function renderCharm(card, data) {
   let revision = data.Meta.id.Revision;
   let owner = data.Meta['extra-info']['bzr-owner'];
   let ownerLink = 'https://launchpad.net/~'+data.Meta['extra-info']['bzr-owner'];
-  let detailsLink = 'https://jujucharms.com/'+name+'/'+series+'/'+revision;
-  let addLink = 'https://demo.jujucharms.com/?deploy-target=' + id;
+  let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
+  let addLink = `https://demo.jujucharms.com/?deploy-target=${id}`;
 
   let dom = `<div class="juju-card__container charm-card">` +
-      `<div class="charm-card__background"></div>` +
       `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
       `<header class="charm-card__header">` +
         `<img src="${image}" alt="${name}" class="charm-card__image" />` +
@@ -136,9 +136,6 @@ function renderCharm(card, data) {
         `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
         `<p class="charm-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
       `</footer>` +
-    `</div>` +
-    `<div class="juju-card__error">` +
-      `<p class="juju-card__error-message"></p>` +
     `</div>`;
 
     card.innerHTML = dom;
@@ -176,6 +173,16 @@ function getWidthClass(el) {
   return queryClass;
 }
 
+function reportError(card, message) {
+
+    let dom = `<div class="juju-card__error">` +
+        `<p class="juju-card__error-message">${message}</p>` +
+      `</div>`;
+
+    card.innerHTML = dom;
+    card.classList.add("juju-card--rendered");
+}
+
 // prettyPrintNumber
 // Takes a number and returns string with commas in the correct places.
 // For example: 3000 => 3,000
@@ -190,24 +197,8 @@ let getImageID = (id) => id.toString().replace('cs:', '');
 // Wraps a XMLHttpRequest in a promise.
 let get = (url) => {
   return new Promise(function(resolve, reject) {
-
     fetch(url).then(r => r.json())
     .then(data => resolve(data))
-    .catch(e => reject(Error(data.statusText)))
-
-    // var req = new XMLHttpRequest();
-    // req.open('GET', url);
-    //
-    // req.onload = function() {
-    //   if (req.status == 200) {
-    //     resolve(req.response);
-    //   } else {
-    //     reject(Error(req.statusText));
-    //   }
-    // };
-    // req.onerror = function() {
-    //   reject(Error("Network Error"));
-    // };
-    // req.send();
+    .catch(e => reject(Error(data.statusText)));
   });
 }

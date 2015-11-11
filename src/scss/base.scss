@@ -22,7 +22,8 @@
     box-sizing: border-box;
 
     &__error {
-      display: block;
+      transition: opacity .5s;
+      opacity: 0;
     }
 
     &__container {
@@ -37,7 +38,9 @@
 
     &.juju-card--rendered {
       .juju-card__error {
-        display: none;
+        opacity: 1;
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
       .juju-card__container {

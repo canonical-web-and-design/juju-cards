@@ -13,6 +13,7 @@
   background: $button-bg;
   position: relative;
   z-index: 10;
+  top: 1px;
   @if $border-color != null {
     border: 1px solid $border-color;
   }
