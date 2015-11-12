@@ -1,0 +1,30 @@
+{
+  "name": "embeddable-cards",
+  "version": "0.0.1",
+  "description": "This is a site demonstrating the usage of the juju card tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CanonicalLtd/juju-cards.git"
+  },
+  "keywords": [
+    "juju",
+    "juju",
+    "card",
+    "embed",
+    "charm",
+    "bundle"
+  ],
+  "author": "Anthony Dillon",
+  "license": "GNU GPL v3",
+  "bugs": {
+    "url": "https://github.com/CanonicalLtd/juju-cards/issues"
+  },
+  "homepage": "https://github.com/CanonicalLtd/juju-cards",
+  "devDependencies": {
+    "vanilla-framework": "0.0.55"
+  }
+}
