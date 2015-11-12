@@ -62,7 +62,7 @@ function renderBundle(card, data) {
   let owner = data.Meta['extra-info']['bzr-owner'];
   let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
   let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}/diagram.svg`;
-  let addLink = `https://demo.jujucharms.com/?deploy-target=${id}`;
+  let addLink = 'https://demo.jujucharms.com/?deploy-target=' + getImageID(id);
 
   let dom = `<div class="juju-card__container bundle-card">` +
       `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
