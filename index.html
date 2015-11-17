@@ -4,20 +4,33 @@ layout: default
 
 <div class="row no-border home">
 
-  <h1 class="page-heading">Posts</h1>
+  <h1 class="page-heading">Juju cards</h1>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  <div style="width:950px; margin: 20px;">
+  	<div class="juju-card" data-id="plumgrid-ons"></div>
+  </div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+  <div style="width:464px; margin: 20px;">
+  	<div class="juju-card" data-id="mediawiki-scalable"></div>
+  </div>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <div style="width:221px; margin: 20px;">
+  	<div class="juju-card" data-id="openstack-base"></div>
+  </div>
+
+  <hr />
+
+  <div style="width:950px; margin: 20px;">
+  	<div class="juju-card" data-id="wordpress"></div>
+  </div>
+
+  <div style="width:464px; margin: 20px;">
+  	<div class="juju-card" data-id="juju-gui"></div>
+  </div>
+
+  <div style="width:221px; margin: 20px;">
+  	<div class="juju-card" data-id="haproxy"></div>
+  </div>
+
 
 </div>
