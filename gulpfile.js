@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     util = require('util'),
     babel = require('gulp-babel'),
     eslint = require('gulp-eslint'),
-    gls = require('gulp-live-server');
+    gls = require('gulp-live-server'),
+    uglify = require('gulp-uglify');
 
 /* Helper functions */
 function throwSassError(sassError) {
@@ -59,6 +60,7 @@ gulp.task('sass', function() {
 gulp.task('babel', function () {
     return gulp.src('src/**/*.js')
         .pipe(babel())
+        .pipe(uglify())
         .pipe(gulp.dest('build/'));
 });
 
