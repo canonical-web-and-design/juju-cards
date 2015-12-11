@@ -79,7 +79,7 @@ function renderBundle(card, data) {
         `<ul class="bundle-card__actions">` +
           `<li class="bundle-card__actions-item--details">` +
             `<label class="bundle-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
-            `<input class="bundle-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
+            `<input class="bundle-card__actions-field" readonly="readonly" value="juju deploy ${id}" onclick="this.select();" id="cli-deploy">` +
           `</li>` +
           `<li class="bundle-card__actions-item--demo">` +
             `<a href="${addLink}" class="bundle-card__add-button--primary">Deploy with Juju</a>` +
@@ -125,7 +125,7 @@ function renderCharm(card, data) {
         `<ul class="charm-card__actions">` +
         `<li class="charm-card__actions-item--details">` +
           `<label class="charm-card__actions-label" for="cli-deploy">Deploy with the CLI:</label>` +
-          `<input class="charm-card__actions-field" readonly="readonly" value="juju deploy ${id}" id="cli-deploy">` +
+          `<input class="charm-card__actions-field" readonly="readonly" value="juju deploy ${id}" onclick="this.select();" id="cli-deploy">` +
         `</li>` +
           `<li class="charm-card__actions-item--demo">` +
             `<a href="${addLink}" class="charm-card__add-button--primary">Deploy with Juju</a>` +
