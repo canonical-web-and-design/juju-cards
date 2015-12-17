@@ -152,11 +152,22 @@ function renderCharm(card, data) {
 // updateHead
 // Add the required stylesheet and font to the page head
 function updateHead() {
+  let domain = ''
+  // TODO: make this a full regex pattern for js/juju-embed.js$
+  //       then use it with the .replace
+  let pattern = /juju-embed\.js$/i;
+
+  Array.from(document.getElementsByTagName("script")).forEach(function(script) {
+    if (pattern.test(script.getAttribute('src'))) {
+      domain = script.getAttribute("src").replace("js/juju-embed.js","");
+    }
+  });
+
   // Load the card stylesheet
   let css  = document.createElement('link');
   css.rel  = 'stylesheet';
   css.type = 'text/css';
-  css.href = 'scss/styles.min.css';
+  css.href = `${domain}scss/styles.min.css`;
   css.media = 'all';
   document.getElementsByTagName('head')[0].appendChild(css);
 
