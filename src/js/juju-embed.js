@@ -58,17 +58,23 @@ function renderBundle(card, data) {
   let id = data.Id;
   let series = data.Meta['id-series'].Series;
   let revision = data.Meta.id.Revision;
-  let ownerLink = 'https://launchpad.net/~'+data.Meta['extra-info']['bzr-owner'];
-  let owner = data.Meta['extra-info']['bzr-owner'];
+  let sourceOwner = data.Meta['extra-info']['bzr-owner'];
+  let owner = data.Meta['id'].User || sourceOwner;
+  let ownerLink = 'https://launchpad.net/~'+sourceOwner;
   let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
-  let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}/diagram.svg`;
+  let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg`;
+  if (data.Meta['id'].User) {
+    ownerLink = 'https://jujucharms.com/u/'+owner;
+    detailsLink = `${ownerLink}/${name}`;
+    image = `https://api.jujucharms.com/charmstore/v4/~${owner}/bundle/${name}-${revision}/diagram.svg`;
+  }
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + getImageID(id);
 
   let dom = `<div class="juju-card__container bundle-card">` +
       `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
       `<header class="bundle-card__header">` +
         `<div class="bundle-card__image-container">` +
-          `<object wmode="transparent" width="100%" class="bundle-card__bundle-image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg"></object>` +
+          `<object wmode="transparent" width="100%" class="bundle-card__bundle-image" type="image/svg+xml" data="${image}"></object>` +
         `</div>` +
       `</header>` +
       `<main class="bundle-card__main">` +
@@ -146,11 +152,22 @@ function renderCharm(card, data) {
 // updateHead
 // Add the required stylesheet and font to the page head
 function updateHead() {
+  let domain = ''
+  // TODO: make this a full regex pattern for js/juju-embed.js$
+  //       then use it with the .replace
+  let pattern = /juju-embed\.js$/i;
+
+  Array.from(document.getElementsByTagName("script")).forEach(function(script) {
+    if (pattern.test(script.getAttribute('src'))) {
+      domain = script.getAttribute("src").replace("js/juju-embed.js","");
+    }
+  });
+
   // Load the card stylesheet
   let css  = document.createElement('link');
   css.rel  = 'stylesheet';
   css.type = 'text/css';
-  css.href = 'scss/styles.min.css';
+  css.href = `${domain}scss/styles.min.css`;
   css.media = 'all';
   document.getElementsByTagName('head')[0].appendChild(css);
 
