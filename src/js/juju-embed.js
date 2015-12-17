@@ -58,17 +58,23 @@ function renderBundle(card, data) {
   let id = data.Id;
   let series = data.Meta['id-series'].Series;
   let revision = data.Meta.id.Revision;
-  let ownerLink = 'https://launchpad.net/~'+data.Meta['extra-info']['bzr-owner'];
-  let owner = data.Meta['extra-info']['bzr-owner'];
+  let sourceOwner = data.Meta['extra-info']['bzr-owner'];
+  let owner = data.Meta['id'].User || sourceOwner;
+  let ownerLink = 'https://launchpad.net/~'+sourceOwner;
   let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
-  let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}/diagram.svg`;
+  let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg`;
+  if (data.Meta['id'].User) {
+    ownerLink = 'https://jujucharms.com/u/'+owner;
+    detailsLink = `${ownerLink}/${name}`;
+    image = `https://api.jujucharms.com/charmstore/v4/~${owner}/bundle/${name}-${revision}/diagram.svg`;
+  }
   let addLink = 'https://demo.jujucharms.com/?deploy-target=' + getImageID(id);
 
   let dom = `<div class="juju-card__container bundle-card">` +
       `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
       `<header class="bundle-card__header">` +
         `<div class="bundle-card__image-container">` +
-          `<object wmode="transparent" width="100%" class="bundle-card__bundle-image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg"></object>` +
+          `<object wmode="transparent" width="100%" class="bundle-card__bundle-image" type="image/svg+xml" data="${image}"></object>` +
         `</div>` +
       `</header>` +
       `<main class="bundle-card__main">` +
