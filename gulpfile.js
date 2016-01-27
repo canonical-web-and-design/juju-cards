@@ -45,7 +45,7 @@ gulp.task('sasslint', function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src('src/**/*.scss')
+    return gulp.src('src/scss/*.scss')
         .pipe(sass({
             style: 'expanded',
             onError: throwSassError
@@ -58,7 +58,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('babel', function () {
-    return gulp.src('src/**/*.js')
+    return gulp.src('src/js/*.js')
         .pipe(babel())
         .pipe(uglify())
         .pipe(gulp.dest('build/'));

@@ -92,7 +92,7 @@ let jujuCards = () => {
         `</main>` +
         `<footer class="bundle-card__footer">` +
           `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
-          `<p class="bundle-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
+          `<p class="bundle-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
 
@@ -138,7 +138,7 @@ let jujuCards = () => {
         `</main>` +
         `<footer class="charm-card__footer">` +
           `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
-          `<p class="charm-card__footer-note">© 2015 <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
+          `<p class="charm-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
 
@@ -150,14 +150,14 @@ let jujuCards = () => {
   // updateHead
   // Add the required stylesheet and font to the page head
   let updateHead = () => {
-    let domain = ''
+    let filePath = ''
     // TODO: make this a full regex pattern for js/juju-embed.js$
     //       then use it with the .replace
-    let pattern = /juju-embed\.js$/i;
+    let pattern = /juju-cards-v[0-9]+.[0-9]+.[0-9]+\.js$/i;
 
     Array.prototype.slice.call(document.getElementsByTagName('script')).forEach(function(script) {
       if (pattern.test(script.getAttribute('src'))) {
-        domain = script.getAttribute('src').replace('js/juju-embed.js','');
+        filePath = script.getAttribute('src').replace('.js','');
       }
     });
 
@@ -165,7 +165,7 @@ let jujuCards = () => {
     let css  = document.createElement('link');
     css.rel  = 'stylesheet';
     css.type = 'text/css';
-    css.href = `${domain}scss/styles.min.css`;
+    css.href = `${filePath}.css`;
     css.media = 'all';
     document.getElementsByTagName('head')[0].appendChild(css);
 
