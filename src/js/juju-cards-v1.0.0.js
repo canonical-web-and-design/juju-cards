@@ -1,5 +1,4 @@
 let jujuCards = () => {
-  let currentYear = new Date().getFullYear();
   let targetClass = 'juju-card';
   let apiAddress = 'https://api.jujucharms.com/charmstore/v4/';
   let apiIncludes = '?include=id-name' +
@@ -93,7 +92,7 @@ let jujuCards = () => {
         `</main>` +
         `<footer class="bundle-card__footer">` +
           `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
-          `<p class="bundle-card__footer-note">&copy; ${currentYear} <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
+          `<p class="bundle-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
 
@@ -139,7 +138,7 @@ let jujuCards = () => {
         `</main>` +
         `<footer class="charm-card__footer">` +
           `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
-          `<p class="charm-card__footer-note">© ${currentYear} <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
+          `<p class="charm-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
 
