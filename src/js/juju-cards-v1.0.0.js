@@ -17,10 +17,10 @@ let jujuCards = () => {
 
     Array.prototype.slice.call(cards).forEach(function(card) {
       let id = card.dataset.id;
-      if(id !== null) {
-        getData(card, id);
+      if (id == undefined || id == '') {
+        console.warn('Card found with no ID');
       } else {
-        console.warn('Found card with no ID');
+        getData(card, id);
       }
     });
     updateHead();
