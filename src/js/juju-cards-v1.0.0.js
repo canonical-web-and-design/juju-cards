@@ -168,13 +168,6 @@ let jujuCards = () => {
     css.href = `${filePath}.css`;
     css.media = 'all';
     document.getElementsByTagName('head')[0].appendChild(css);
-
-    // Load the Ubuntu and Ubuntu Mono font
-    let font = document.createElement('link');
-    font.rel  = 'stylesheet';
-    font.type = 'text/css';
-    font.href = 'https://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu:300';
-    document.getElementsByTagName('head')[0].appendChild(font);
   }
 
   // getWidthClass

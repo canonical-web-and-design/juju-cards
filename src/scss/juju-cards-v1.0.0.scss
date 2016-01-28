@@ -4,8 +4,9 @@
 /// @since        0.0.1
 ////
 
-@import 'variables', 'modules/buttons', 'helpers', 'base', 'charm', 'bundle';
+@import 'variables', 'modules/buttons', 'helpers', 'base', 'charm', 'bundle', 'fonts';
 
 @include base;
 @include charm;
 @include bundle;
+@include fonts;

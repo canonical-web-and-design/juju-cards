@@ -1,0 +1,22 @@
+$asset-path: 'https://assets.ubuntu.com/sites/ubuntu/latest/u/';
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: url('#{$asset-path}fonts/ubuntu-l-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntu-l-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$asset-path}fonts/ubuntu-r-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntu-r-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$asset-path}fonts/ubuntumono-r-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntumono-r-webfont.woff') format('woff');
+}
