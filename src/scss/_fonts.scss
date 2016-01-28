@@ -1,22 +1,32 @@
-$asset-path: 'https://assets.ubuntu.com/sites/ubuntu/latest/u/';
+////
+/// @author       Anthony Dillon
+/// @link         https://github.com/CanonicalLtd/juju-cards
+/// @since        1.0.2
+////
 
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 300;
-  src: url('#{$asset-path}fonts/ubuntu-l-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntu-l-webfont.woff') format('woff');
-}
+/// Ubuntu fonts
+/// @group Fonts
+@mixin fonts {
+  $asset-path: 'https://assets.ubuntu.com/sites/ubuntu/latest/u/';
 
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  src: url('#{$asset-path}fonts/ubuntu-r-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntu-r-webfont.woff') format('woff');
-}
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    src: url('#{$asset-path}fonts/ubuntu-l-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntu-l-webfont.woff') format('woff');
+  }
 
-@font-face {
-  font-family: 'Ubuntu Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url('#{$asset-path}fonts/ubuntumono-r-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntumono-r-webfont.woff') format('woff');
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: url('#{$asset-path}fonts/ubuntu-r-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntu-r-webfont.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Ubuntu Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('#{$asset-path}fonts/ubuntumono-r-webfont.woff2') format('woff2'), url('#{$asset-path}fonts/ubuntumono-r-webfont.woff') format('woff');
+  }
 }
