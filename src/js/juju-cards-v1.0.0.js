@@ -216,4 +216,6 @@ let jujuCards = () => {
     httpRequest.open('GET', url);
     httpRequest.send();
   }
-}();
+};
+
+jujuCards();
