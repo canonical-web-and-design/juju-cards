@@ -8,23 +8,8 @@ let jujuCards = () => {
                     '&include=extra-info' +
                     '&include=promulgated';
 
-  document.addEventListener("DOMContentLoaded", function(e) {
-    init();
-  });
 
-  let init = () => {
-    let cards = document.querySelectorAll('.' + targetClass);
-
-    Array.prototype.slice.call(cards).forEach(function(card) {
-      let id = card.dataset.id;
-      if (id == undefined || id == '') {
-        console.warn('Card found with no ID');
-      } else {
-        getData(card, id);
-      }
-    });
-    updateHead();
-  }
+  let cards = document.querySelectorAll('.' + targetClass);
 
   // getData
   // Concatenates the api url and fetches it
@@ -216,6 +201,18 @@ let jujuCards = () => {
     httpRequest.open('GET', url);
     httpRequest.send();
   }
+
+  Array.prototype.slice.call(cards).forEach(function(card) {
+    let id = card.dataset.id;
+    if (id == undefined || id == '') {
+      console.warn('Card found with no ID');
+    } else {
+      getData(card, id);
+    }
+  });
+  updateHead();
 };
 
-jujuCards();
+document.addEventListener("DOMContentLoaded", function(e) {
+  jujuCards();
+});
