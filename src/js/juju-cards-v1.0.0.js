@@ -21,7 +21,7 @@ let jujuCards = () => {
       } else {
         reportError(card, response.Message);
       }
-    });
+    }, card, id);
   }
 
   // detectType
@@ -168,8 +168,8 @@ let jujuCards = () => {
 
   let reportError = (card, message) => {
 
-      let dom = `<div class="juju-card__error">`
-          `<p class="juju-card__error-message">${message}</p>`
+      let dom = `<div class="juju-card__error">` +
+          `<p class="juju-card__error-message">${message}</p>` +
         `</div>`;
 
       card.innerHTML = dom;
@@ -188,14 +188,18 @@ let jujuCards = () => {
 
   // get
   // Wraps a XMLHttpRequest in a promise.
-  let get = (url, callback) => {
+  let get = (url, callback, card, id) => {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
         if (httpRequest.readyState === 4) {
             if (httpRequest.status === 200) {
                 var data = JSON.parse(httpRequest.responseText);
                 if (callback) callback(data);
+            } else {
+              reportError(card, 'No charm or bundle found for ' + id);
             }
+        } else {
+          reportError(card, 'No charm or bundle found for ' + id);
         }
     };
     httpRequest.open('GET', url);
