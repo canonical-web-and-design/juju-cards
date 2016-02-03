@@ -132,29 +132,6 @@ let jujuCards = () => {
       card.classList.add(getWidthClass(card));
   }
 
-  // updateHead
-  // Add the required stylesheet and font to the page head
-  let updateHead = () => {
-    let filePath = ''
-    // TODO: make this a full regex pattern for js/juju-embed.js$
-    //       then use it with the .replace
-    let pattern = /juju-cards-v[0-9]+.[0-9]+.[0-9]+\.js$/i;
-
-    Array.prototype.slice.call(document.getElementsByTagName('script')).forEach(function(script) {
-      if (pattern.test(script.getAttribute('src'))) {
-        filePath = script.getAttribute('src').replace('.js','');
-      }
-    });
-
-    // Load the card stylesheet
-    let css  = document.createElement('link');
-    css.rel  = 'stylesheet';
-    css.type = 'text/css';
-    css.href = `${filePath}.css`;
-    css.media = 'all';
-    document.getElementsByTagName('head')[0].appendChild(css);
-  }
-
   // getWidthClass
   // Checks the width of the card container and returns the correct class to
   // attach element queries
@@ -214,9 +191,33 @@ let jujuCards = () => {
       getData(card, id);
     }
   });
-  updateHead();
 };
+
+// updateHead
+// Add the required stylesheet and font to the page head
+jujuCards.updateHead = () => {
+  let filePath = ''
+  // TODO: make this a full regex pattern for js/juju-embed.js$
+  //       then use it with the .replace
+  let pattern = /juju-cards-v[0-9]+.[0-9]+.[0-9]+\.js$/i;
+
+  Array.prototype.slice.call(document.getElementsByTagName('script')).forEach(function(script) {
+    if (pattern.test(script.getAttribute('src'))) {
+      filePath = script.getAttribute('src').replace('.js','');
+    }
+  });
+
+  // Load the card stylesheet
+  let css  = document.createElement('link');
+  css.rel  = 'stylesheet';
+  css.type = 'text/css';
+  css.href = `${filePath}.css`;
+  css.media = 'all';
+  document.getElementsByTagName('head')[0].appendChild(css);
+}
+
 
 document.addEventListener("DOMContentLoaded", function(e) {
   jujuCards();
+  jujuCards.updateHead();
 });
