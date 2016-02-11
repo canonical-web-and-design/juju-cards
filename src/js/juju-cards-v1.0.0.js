@@ -216,8 +216,8 @@ jujuCards.updateHead = () => {
   document.getElementsByTagName('head')[0].appendChild(css);
 }
 
-if (window.onload && typeof window.onload === function) {
-  var jujuCards.onload = window.onload;
+if (window.onload && typeof window.onload === 'function') {
+  jujuCards.onload = window.onload;
 }
 
 window.onload = function() {
