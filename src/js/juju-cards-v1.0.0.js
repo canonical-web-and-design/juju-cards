@@ -216,8 +216,12 @@ jujuCards.updateHead = () => {
   document.getElementsByTagName('head')[0].appendChild(css);
 }
 
+if (window.onload && typeof window.onload === function) {
+  var jujuCards.onload = window.onload;
+}
 
-document.addEventListener("DOMContentLoaded", function(e) {
+window.onload = function() {
+  jujuCards.onload();
   jujuCards();
   jujuCards.updateHead();
-});
+};
