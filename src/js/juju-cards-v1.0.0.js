@@ -221,7 +221,9 @@ if (window.onload && typeof window.onload === 'function') {
 }
 
 window.onload = function() {
-  jujuCards.onload();
+  if (jujuCards.onload) {
+    jujuCards.onload(); 
+  }
   jujuCards();
   jujuCards.updateHead();
 };
