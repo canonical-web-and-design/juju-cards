@@ -47,5 +47,10 @@
         opacity: 1;
       }
     }
+
+    img {
+      position: static;
+      transform: none;
+    }
   }
 }

@@ -90,6 +90,11 @@
       margin: 10px 0 0;
     }
 
+    &__actions-command {
+      position: relative;
+      margin: 5px 0 10px;
+    }
+
     &__actions-field {
       font-family: "Ubuntu Mono", "Consolas", "Monaco", "Lucida Console", "Courier New", Courier, monospace;
       background-color: $white;
@@ -104,9 +109,23 @@
       font-size: 16px;
       font-weight: 300;
       cursor: text;
-      margin: 5px 0 10px;
       position: relative;
       z-index: 10;
+    }
+
+    &__actions-copy-to-clipboard {
+      background-color: rgba(255, 255, 255, .75);
+      position: absolute;
+      z-index: 11;
+      cursor: pointer;
+      right: 1px;
+      top: 1px;
+      border: 0;
+      padding: 12px;
+
+      &:hover {
+        background-color: rgba(212, 212, 212, .75);
+      }
     }
 
     &__add-button {
