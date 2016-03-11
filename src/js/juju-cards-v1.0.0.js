@@ -45,13 +45,16 @@ let jujuCards = () => {
     let owner = data.Meta['id'].User || sourceOwner;
     let ownerLink = `https://launchpad.net/~${sourceOwner}`;
     let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
-    let image = `https://api.jujucharms.com/charmstore/v4/bundle/${name}-${revision}/diagram.svg`;
+    let image = `${apiAddress}bundle/${name}-${revision}/diagram.svg`;
     if (data.Meta['id'].User) {
       ownerLink = `https://jujucharms.com/u/${owner}`;
       detailsLink = `${ownerLink}/${name}`;
-      image = `https://api.jujucharms.com/charmstore/v4/~${owner}/bundle/${name}-${revision}/diagram.svg`;
+      image = `${apiAddress}~${owner}/bundle/${name}-${revision}/diagram.svg`;
     }
     let addLink = `https://demo.jujucharms.com/?deploy-target=${getImageID(id)}`;
+
+    console.log(name + ' | ' + series + ' | ' + revision);
+    console.log(detailsLink);
 
     let dom = `<div class="juju-card__container bundle-card">` +
         `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
@@ -91,7 +94,7 @@ let jujuCards = () => {
   let renderCharm = (card, data) => {
     let name = data.Meta['id-name'].Name;
     let id = data.Id;
-    let image = `https://api.jujucharms.com/v4/${getImageID(id)}/icon.svg`;
+    let image = `${apiAddress}${getImageID(id)}/icon.svg`;
     let deploys = prettyPrintNumber(data.Meta.stats.ArchiveDownloadCount);
     let series = data.Meta['id-series'].Series;
     let revision = data.Meta.id.Revision;
@@ -99,6 +102,12 @@ let jujuCards = () => {
     let ownerLink = 'https://launchpad.net/~'+data.Meta['extra-info']['bzr-owner'];
     let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
     let addLink = `https://demo.jujucharms.com/?deploy-target=${id}`;
+
+    if (data.Meta['id'].User) {
+      ownerLink = `https://jujucharms.com/u/${owner}`;
+      detailsLink = `${ownerLink}/${name}`;
+      image = `${apiAddress}~${owner}/${series}/${name}-${revision}/icon.svg`;
+    }
 
     let dom = `<div class="juju-card__container charm-card">` +
         `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
@@ -222,7 +231,7 @@ if (window.onload && typeof window.onload === 'function') {
 
 window.onload = function() {
   if (jujuCards.onload) {
-    jujuCards.onload(); 
+    jujuCards.onload();
   }
   jujuCards();
   jujuCards.updateHead();
