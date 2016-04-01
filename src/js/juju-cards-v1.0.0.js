@@ -46,15 +46,21 @@ let jujuCards = () => {
     let series = data.Meta['id-series'].Series;
     let revision = data.Meta.id.Revision;
     let sourceOwner = data.Meta['extra-info']['bzr-owner'];
-    let owner = data.Meta['id'].User || sourceOwner;
+    let owner = sourceOwner;
     let ownerLink = `https://launchpad.net/~${sourceOwner}`;
     let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
     let image = `${apiAddress}bundle/${name}-${revision}/diagram.svg`;
+    if (sourceOwner === undefined) {
+      owner = 'charmers';
+      ownerLink = `https://jujucharms.com/u/${owner}`;
+    }
     if (data.Meta['id'].User) {
+      owner = data.Meta['id'].User;
       ownerLink = `https://jujucharms.com/u/${owner}`;
       detailsLink = `${ownerLink}/${name}`;
       image = `${apiAddress}~${owner}/bundle/${name}-${revision}/diagram.svg`;
     }
+
     let addLink = `https://demo.jujucharms.com/?deploy-target=${getImageID(id)}`;
 
     let dom = `<div class="juju-card__container bundle-card">` +
@@ -107,7 +113,8 @@ let jujuCards = () => {
     let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
     let addLink = `https://demo.jujucharms.com/?deploy-target=${id}`;
 
-    if (data.Meta['id'].User) {
+    if (data.Meta.id.User) {
+      owner = data.Meta.id.User;
       ownerLink = `https://jujucharms.com/u/${owner}`;
       detailsLink = `${ownerLink}/${name}`;
       image = `${apiAddress}~${owner}/${series}/${name}-${revision}/icon.svg`;
