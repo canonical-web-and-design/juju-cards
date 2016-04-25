@@ -1,8 +1,11 @@
 let jujuCards = () => {
   let targetClass = 'juju-card';
+  let siteDomain = 'https://jujucharms.com';
+  let demoDomain = 'https://demo.jujucharms.com';
   let apiAddress = 'https://api.jujucharms.com/charmstore/v4/';
   let apiIncludes = '?include=id-name' +
                     '&include=id' +
+                    '&include=owner' +
                     '&include=stats' +
                     '&include=id-series' +
                     '&include=extra-info' +
@@ -46,22 +49,19 @@ let jujuCards = () => {
     let series = data.Meta['id-series'].Series;
     let revision = data.Meta.id.Revision;
     let sourceOwner = data.Meta['extra-info']['bzr-owner'];
-    let owner = sourceOwner;
-    let ownerLink = `https://launchpad.net/~${sourceOwner}`;
-    let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
+    let owner = data.Meta.owner.User;
+    let ownerLink = `${siteDomain}/u/${owner}`;
+    let promulgated = data.Meta.promulgated.Promulgated;
+    let detailsLink = '';
     let image = `${apiAddress}bundle/${name}-${revision}/diagram.svg`;
-    if (sourceOwner === undefined) {
-      owner = 'charmers';
-      ownerLink = `https://jujucharms.com/u/${owner}`;
-    }
-    if (data.Meta['id'].User) {
-      owner = data.Meta['id'].User;
-      ownerLink = `https://jujucharms.com/u/${owner}`;
+    if (promulgated) {
+      detailsLink = `${siteDomain}/${name}`;
+    } else {
       detailsLink = `${ownerLink}/${name}`;
       image = `${apiAddress}~${owner}/bundle/${name}-${revision}/diagram.svg`;
     }
 
-    let addLink = `https://demo.jujucharms.com/?deploy-target=${getImageID(id)}`;
+    let addLink = `${demoDomain}/?deploy-target=${getImageID(id)}`;
 
     let dom = `<div class="juju-card__container bundle-card">` +
         `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
@@ -108,17 +108,16 @@ let jujuCards = () => {
     let deploys = prettyPrintNumber(data.Meta.stats.ArchiveDownloadCount);
     let series = data.Meta['id-series'].Series;
     let revision = data.Meta.id.Revision;
-    let owner = data.Meta['extra-info']['bzr-owner'];
-    let ownerLink = 'https://launchpad.net/~'+data.Meta['extra-info']['bzr-owner'];
-    let detailsLink = `https://jujucharms.com/${name}/${series}/${revision}`;
-    let addLink = `https://demo.jujucharms.com/?deploy-target=${id}`;
-
-    if (data.Meta.id.User) {
-      owner = data.Meta.id.User;
-      ownerLink = `https://jujucharms.com/u/${owner}`;
+    let owner = data.Meta.owner.User;
+    let promulgated = data.Meta.promulgated.Promulgated;
+    let ownerLink = `${siteDomain}/u/${owner}`;
+    let detailsLink = '';
+    if (promulgated) {
+      detailsLink = `${siteDomain}/${name}`;
+    } else {
       detailsLink = `${ownerLink}/${name}`;
-      image = `${apiAddress}~${owner}/${series}/${name}-${revision}/icon.svg`;
     }
+    let addLink = `${demoDomain}/?deploy-target=${id}`;
 
     let dom = `<div class="juju-card__container charm-card">` +
         `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
