@@ -2,13 +2,12 @@ let jujuCards = () => {
   let targetClass = 'juju-card';
   let siteDomain = 'https://jujucharms.com';
   let demoDomain = 'https://demo.jujucharms.com';
-  let apiAddress = 'https://api.jujucharms.com/charmstore/v4/';
+  let apiAddress = 'https://api.jujucharms.com/v5/';
   let apiIncludes = '?include=id-name' +
                     '&include=id' +
                     '&include=owner' +
                     '&include=stats' +
                     '&include=id-series' +
-                    '&include=extra-info' +
                     '&include=promulgated';
   let copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">' +
   '<path d="M4.85 11.15l6.3-6.3" overflow="visible" fill="none" stroke="gray" stroke-width="1.463"/>' +
@@ -48,7 +47,6 @@ let jujuCards = () => {
     let id = data.Id;
     let series = data.Meta['id-series'].Series;
     let revision = data.Meta.id.Revision;
-    let sourceOwner = data.Meta['extra-info']['bzr-owner'];
     let owner = data.Meta.owner.User;
     let ownerLink = `${siteDomain}/u/${owner}`;
     let promulgated = data.Meta.promulgated.Promulgated;
