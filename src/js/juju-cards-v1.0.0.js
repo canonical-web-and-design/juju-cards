@@ -2,7 +2,7 @@ let jujuCards = () => {
   let targetClass = 'juju-card';
   let siteDomain = 'https://jujucharms.com';
   let demoDomain = 'https://demo.jujucharms.com';
-  let apiAddress = 'https://api.jujucharms.com/v5/';
+  let apiAddress = 'https://api.jujucharms.com/charmstore/v5/';
   let apiIncludes = '?include=id-name' +
                     '&include=id' +
                     '&include=owner' +
