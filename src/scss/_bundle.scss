@@ -140,7 +140,7 @@
       }
     }
 
-    &__actions-item--details, {
+    &__actions-item--details {
       display: none;
     }
 
@@ -269,7 +269,7 @@
       }
 
       &__actions-item--demo,
-      &__actions-item--details, {
+      &__actions-item--details {
         width: 100%;
       }
 

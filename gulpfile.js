@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     babel = require('gulp-babel'),
     eslint = require('gulp-eslint'),
     gls = require('gulp-live-server'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    sassLint = require('gulp-sass-lint');
 
 /* Helper functions */
 function throwSassError(sassError) {
@@ -40,8 +41,9 @@ gulp.task('html', function() {
 gulp.task('sasslint', function() {
     var path = (gutil.env.file)? gutil.env.file : '**/*.scss';
     return gulp.src('src/' + path)
-        .pipe(scsslint())
-        .pipe(scsslint.failReporter());
+        .pipe(sassLint())
+        .pipe(sassLint.format())
+        .pipe(sassLint.failOnError());
 });
 
 gulp.task('sass', function() {
