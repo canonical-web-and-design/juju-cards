@@ -226,7 +226,7 @@
       }
 
       &__actions-item--demo,
-      &__actions-item--details, {
+      &__actions-item--details {
         @extend %half-half;
       }
 
@@ -256,7 +256,7 @@
       }
 
       &__actions-item--demo,
-      &__actions-item--details, {
+      &__actions-item--details {
         width: 100%;
       }
 
