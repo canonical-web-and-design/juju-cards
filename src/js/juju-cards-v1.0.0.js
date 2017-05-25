@@ -60,6 +60,12 @@ let jujuCards = () => {
     }
 
     let addLink = `${demoDomain}/?deploy-target=${getImageID(id)}`;
+    let deployTitle = 'Deploy with Juju';
+
+    if (typeof(card.dataset.dd) !== 'undefined') {
+      addLink = `${demoDomain}/?dd=${getImageID(id)}`;
+      deployTitle = 'Direct Deploy with JAAS';
+    }
 
     let dom = `<div class="juju-card__container bundle-card">` +
         `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
@@ -82,12 +88,12 @@ let jujuCards = () => {
               `</div>` +
             `</li>` +
             `<li class="bundle-card__actions-item--demo">` +
-              `<a href="${addLink}" class="bundle-card__add-button--primary">Deploy with Juju</a>` +
+              `<a href="${addLink}" class="bundle-card__add-button--primary">${deployTitle}</a>` +
             `</li>` +
           `</ul>` +
         `</main>` +
         `<footer class="bundle-card__footer">` +
-          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
+          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/juju-logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
           `<p class="bundle-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
@@ -116,6 +122,17 @@ let jujuCards = () => {
       detailsLink = `${ownerLink}/${name}`;
     }
     let addLink = `${demoDomain}/?deploy-target=${id}`;
+    let deployTitle = 'Deploy with Juju';
+
+    if (typeof(card.dataset.dd) !== 'undefined') {
+      addLink = `${demoDomain}/?dd=${id}`;
+      deployTitle = 'Direct Deploy with JAAS';
+    }
+
+    let seriesEle = ``;
+    if (series) {
+      seriesEle = `<li class="charm-card__meta-item--series">${series}</li>`;
+    }
 
     let dom = `<div class="juju-card__container charm-card">` +
         `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
@@ -124,7 +141,7 @@ let jujuCards = () => {
           `<h1 class="charm-card__title">${name}</h1>` +
           `<ul class="charm-card__meta">` +
             `<li class="charm-card__meta-item--by">by <a href="${ownerLink}">${owner}</a></li>` +
-            `<li class="charm-card__meta-item--series">${series}</li>` +
+            `${seriesEle}` +
           `</ul>` +
         `</header>` +
         `<main class="charm-card__main">` +
@@ -137,12 +154,12 @@ let jujuCards = () => {
             `</div>` +
           `</li>` +
             `<li class="charm-card__actions-item--demo">` +
-              `<a href="${addLink}" class="charm-card__add-button--primary">Deploy with Juju</a>` +
+              `<a href="${addLink}" class="charm-card__add-button--primary">${deployTitle}</a>` +
             `</li>` +
           `</ul>` +
         `</main>` +
         `<footer class="charm-card__footer">` +
-          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
+          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/juju-logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
           `<p class="charm-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
