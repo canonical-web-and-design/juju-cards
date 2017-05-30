@@ -64,7 +64,7 @@ let jujuCards = () => {
 
     if (typeof(card.dataset.dd) !== 'undefined') {
       addLink = `${demoDomain}/?dd=${getImageID(id)}`;
-      deployTitle = 'Direct Deploy with JAAS';
+      deployTitle = 'Deploy with JAAS';
     }
 
     let dom = `<div class="juju-card__container bundle-card">` +
@@ -126,7 +126,7 @@ let jujuCards = () => {
 
     if (typeof(card.dataset.dd) !== 'undefined') {
       addLink = `${demoDomain}/?dd=${id}`;
-      deployTitle = 'Direct Deploy with JAAS';
+      deployTitle = 'Deploy with JAAS';
     }
 
     let seriesEle = ``;
