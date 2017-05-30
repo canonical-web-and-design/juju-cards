@@ -17,6 +17,30 @@ let jujuCards = () => {
 
   let cards = document.querySelectorAll('.' + targetClass);
 
+  // getLink
+  // Get the button link
+  const getLink = (domain, id, dd) => {
+    let addLink = `${domain}/?deploy-target=${id}`;
+
+    if (dd !== undefined) {
+      addLink = `${domain}/?dd=${id}`;
+    }
+
+    return addLink;
+  };
+
+  // getButtonText
+  // Get the button text
+  const getButtonText = (domain, id, dd) => {
+    let deployTitle = 'Deploy with Juju';
+
+    if (dd !== undefined) {
+      deployTitle = 'Deploy with JAAS';
+    }
+
+    return deployTitle;
+  };
+
   // getData
   // Concatenates the api url and fetches it
   let getData = (card, id) => {
@@ -28,7 +52,7 @@ let jujuCards = () => {
         reportError(card, response.Message);
       }
     }, card, id);
-  }
+  };
 
   // detectType
   // Checks if the element is a bundle or charm and renders the correct function
@@ -38,7 +62,7 @@ let jujuCards = () => {
     } else {
       renderCharm(card, data);
     }
-  }
+  };
 
   // renderBundle
   // Split out required data and insert card markup
@@ -59,13 +83,8 @@ let jujuCards = () => {
       image = `${apiAddress}~${owner}/bundle/${name}-${revision}/diagram.svg`;
     }
 
-    let addLink = `${demoDomain}/?deploy-target=${getImageID(id)}`;
-    let deployTitle = 'Deploy with Juju';
-
-    if (typeof(card.dataset.dd) !== 'undefined') {
-      addLink = `${demoDomain}/?dd=${getImageID(id)}`;
-      deployTitle = 'Deploy with JAAS';
-    }
+    const addLink = getLink(demoDomain, getImageID(id), card.dataset.dd);
+    const deployTitle = getButtonText(demoDomain, getImageID(id), card.dataset.dd);
 
     let dom = `<div class="juju-card__container bundle-card">` +
         `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
@@ -121,13 +140,8 @@ let jujuCards = () => {
     } else {
       detailsLink = `${ownerLink}/${name}`;
     }
-    let addLink = `${demoDomain}/?deploy-target=${id}`;
-    let deployTitle = 'Deploy with Juju';
-
-    if (typeof(card.dataset.dd) !== 'undefined') {
-      addLink = `${demoDomain}/?dd=${id}`;
-      deployTitle = 'Deploy with JAAS';
-    }
+    const addLink = getLink(demoDomain, getImageID(id), card.dataset.dd);
+    const deployTitle = getButtonText(demoDomain, getImageID(id), card.dataset.dd);
 
     let seriesEle = ``;
     if (series) {
