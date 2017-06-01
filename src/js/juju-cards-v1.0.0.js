@@ -17,6 +17,30 @@ let jujuCards = () => {
 
   let cards = document.querySelectorAll('.' + targetClass);
 
+  // getLink
+  // Get the button link
+  const getLink = (domain, id, dd) => {
+    let addLink = `${domain}/?deploy-target=${id}`;
+
+    if (dd !== undefined) {
+      addLink = `${domain}/?dd=${id}`;
+    }
+
+    return addLink;
+  };
+
+  // getButtonText
+  // Get the button text
+  const getButtonText = (domain, id, dd) => {
+    let deployTitle = 'Deploy with Juju';
+
+    if (dd !== undefined) {
+      deployTitle = 'Deploy with JAAS';
+    }
+
+    return deployTitle;
+  };
+
   // getData
   // Concatenates the api url and fetches it
   let getData = (card, id) => {
@@ -28,7 +52,7 @@ let jujuCards = () => {
         reportError(card, response.Message);
       }
     }, card, id);
-  }
+  };
 
   // detectType
   // Checks if the element is a bundle or charm and renders the correct function
@@ -38,7 +62,7 @@ let jujuCards = () => {
     } else {
       renderCharm(card, data);
     }
-  }
+  };
 
   // renderBundle
   // Split out required data and insert card markup
@@ -59,7 +83,8 @@ let jujuCards = () => {
       image = `${apiAddress}~${owner}/bundle/${name}-${revision}/diagram.svg`;
     }
 
-    let addLink = `${demoDomain}/?deploy-target=${getImageID(id)}`;
+    const addLink = getLink(demoDomain, getImageID(id), card.dataset.dd);
+    const deployTitle = getButtonText(demoDomain, getImageID(id), card.dataset.dd);
 
     let dom = `<div class="juju-card__container bundle-card">` +
         `<a href="${detailsLink}" class="bundle-card__link">View details</a>` +
@@ -82,12 +107,12 @@ let jujuCards = () => {
               `</div>` +
             `</li>` +
             `<li class="bundle-card__actions-item--demo">` +
-              `<a href="${addLink}" class="bundle-card__add-button--primary">Deploy with Juju</a>` +
+              `<a href="${addLink}" class="bundle-card__add-button--primary">${deployTitle}</a>` +
             `</li>` +
           `</ul>` +
         `</main>` +
         `<footer class="bundle-card__footer">` +
-          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
+          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/juju-logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
           `<p class="bundle-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
@@ -115,7 +140,13 @@ let jujuCards = () => {
     } else {
       detailsLink = `${ownerLink}/${name}`;
     }
-    let addLink = `${demoDomain}/?deploy-target=${id}`;
+    const addLink = getLink(demoDomain, getImageID(id), card.dataset.dd);
+    const deployTitle = getButtonText(demoDomain, getImageID(id), card.dataset.dd);
+
+    let seriesEle = ``;
+    if (series) {
+      seriesEle = `<li class="charm-card__meta-item--series">${series}</li>`;
+    }
 
     let dom = `<div class="juju-card__container charm-card">` +
         `<a href="${detailsLink}" class="charm-card__link">View details</a>` +
@@ -124,7 +155,7 @@ let jujuCards = () => {
           `<h1 class="charm-card__title">${name}</h1>` +
           `<ul class="charm-card__meta">` +
             `<li class="charm-card__meta-item--by">by <a href="${ownerLink}">${owner}</a></li>` +
-            `<li class="charm-card__meta-item--series">${series}</li>` +
+            `${seriesEle}` +
           `</ul>` +
         `</header>` +
         `<main class="charm-card__main">` +
@@ -137,12 +168,12 @@ let jujuCards = () => {
             `</div>` +
           `</li>` +
             `<li class="charm-card__actions-item--demo">` +
-              `<a href="${addLink}" class="charm-card__add-button--primary">Deploy with Juju</a>` +
+              `<a href="${addLink}" class="charm-card__add-button--primary">${deployTitle}</a>` +
             `</li>` +
           `</ul>` +
         `</main>` +
         `<footer class="charm-card__footer">` +
-          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
+          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/juju-logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
           `<p class="charm-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;

@@ -20,6 +20,7 @@
     background: $white;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 2px;
 
     &__error {
       transition: opacity .5s;
