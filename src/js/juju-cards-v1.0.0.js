@@ -1,7 +1,15 @@
-let jujuCards = () => {
+// Allow the user of the cards to customize the install URL to their own
+// controller using the data-demoDomain attribute on the script tag
+// embedding the juju-cards.js script.
+const customDemoDomain = document.currentScript.getAttribute('data-demodomain');
+let demoDomain = 'https://jujucharms.com/new';
+if (customDemoDomain) {
+    demoDomain = customDemoDomain + "/new";
+}
+
+let jujuCards = (demoDomain) => {
   let targetClass = 'juju-card';
   let siteDomain = 'https://jujucharms.com';
-  let demoDomain = 'https://jujucharms.com/new';
   let apiAddress = 'https://api.jujucharms.com/charmstore/v5/';
   let apiIncludes = '?include=id-name' +
                     '&include=id' +
@@ -287,6 +295,6 @@ window.onload = function() {
   if (jujuCards.onload) {
     jujuCards.onload();
   }
-  jujuCards();
+  jujuCards(demoDomain);
   jujuCards.updateHead();
 };
