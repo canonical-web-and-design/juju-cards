@@ -254,7 +254,7 @@ jujuCards.updateHead = () => {
 
   Array.prototype.slice.call(document.getElementsByTagName('script')).forEach(function(script) {
     if (pattern.test(script.getAttribute('src'))) {
-      filePath = script.getAttribute('src').replace('.js','');
+      filePath = script.getAttribute('src').replace('.js','').replace('js/','');
     }
   });
 
@@ -262,7 +262,7 @@ jujuCards.updateHead = () => {
   let css  = document.createElement('link');
   css.rel  = 'stylesheet';
   css.type = 'text/css';
-  css.href = `${filePath}.css`;
+  css.href = `css/${filePath}.css`;
   css.media = 'all';
   document.getElementsByTagName('head')[0].appendChild(css);
 }
