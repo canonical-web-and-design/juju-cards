@@ -227,11 +227,6 @@
         }
       }
 
-      &__actions-item--demo,
-      &__actions-item--details {
-        @extend %half-half;
-      }
-
       &__actions-field,
       &__actions-label,
       &__actions-copy-to-clipboard {
@@ -255,6 +250,11 @@
 
       &__main {
         margin-right: 0;
+      }
+
+      &__actions-item--demo,
+      &__actions-item--details {
+        @extend %half-half;
       }
 
       &__actions-item--demo,
