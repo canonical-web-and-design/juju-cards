@@ -24,14 +24,16 @@
     "build-js": "babel src --out-dir build",
     "build-css": "node-sass --include-path node_modules src/scss --output build/css && postcss --use autoprefixer --replace 'build/css/*.css' && postcss --use cssnano --dir build/css 'build/css/*.css'",
     "build-html": "cp src/index.html build",
-    "build": "npm run build-css && npm run build-js && npm run build-html",
-    "clean": "rm -r build; rm -r node_modules"
+    "build": "yarn run build-css && yarn run build-js && yarn run build-html",
+    "clean": "rm -r build; rm -r node_modules",
+    "serve": "http-server ./build"
   },
   "devDependencies": {
     "autoprefixer": "^8.4.1",
     "babel-cli": "^6.26.0",
     "cssnano": "^3.10.0",
     "html-minifier-cli": "^0.1.0",
+    "http-server": "0.11.1",
     "install": "^0.11.0",
     "node-sass": "^4.9.0",
     "postcss-cli": "^5.0.0"
