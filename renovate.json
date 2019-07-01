@@ -1,5 +1,16 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    "schedule:monthly",
+    "group:all"
+  ],
+  "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "extends": [":automergeMinor"]
+    }
+  ],
+  "compatibility": {
+    "python": "2.7"
+  }
 }
