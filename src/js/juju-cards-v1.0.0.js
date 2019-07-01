@@ -120,7 +120,7 @@ let jujuCards = (demoDomain) => {
           `</ul>` +
         `</main>` +
         `<footer class="bundle-card__footer">` +
-          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/juju-logo.svg" alt="" class="bundle-card__footer-logo" /></a>` +
+          `<a href="http://jujucharms.com"><img src="https://assets.ubuntu.com/v1/7e21b535-logo-juju.svg" alt="" class="bundle-card__footer-logo" /></a>` +
           `<p class="bundle-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
@@ -181,7 +181,7 @@ let jujuCards = (demoDomain) => {
           `</ul>` +
         `</main>` +
         `<footer class="charm-card__footer">` +
-          `<a href="http://jujucharms.com"><img src="https://jujucharms.com/static/img/logos/juju-logo.svg" alt="" class="charm-card__footer-logo" /></a>` +
+          `<a href="http://jujucharms.com"><img src="https://assets.ubuntu.com/v1/7e21b535-logo-juju.svg" alt="" class="charm-card__footer-logo" /></a>` +
           `<p class="charm-card__footer-note">&copy; <a href="http://www.canonical.com">Canonical Ltd</a>.</p>` +
         `</footer>` +
       `</div>`;
