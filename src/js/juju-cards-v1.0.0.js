@@ -270,7 +270,7 @@ jujuCards.updateHead = () => {
   let css  = document.createElement('link');
   css.rel  = 'stylesheet';
   css.type = 'text/css';
-  css.href = `css/${filePath}.css`;
+  css.href = `${filePath}.css`;
   css.media = 'all';
   document.getElementsByTagName('head')[0].appendChild(css);
 }
