@@ -22,7 +22,7 @@
   "license": "LGPL-3.0",
   "scripts": {
     "build-js": "babel src/js --out-dir build",
-    "build-css": "node-sass --include-path node_modules src/scss --output build && postcss --use autoprefixer --replace 'build/*.css' && postcss --use cssnano --dir build 'build/*.css'",
+    "build-css": "node-sass --include-path node_modules src/scss --output build && postcss --use autoprefixer --replace 'build/*.css' --no-map && postcss --use cssnano --dir build 'build/*.css' --no-map",
     "build-html": "cp src/index.html build",
     "build": "yarn run build-css && yarn run build-js && yarn run build-html",
     "clean": "rm -r build; rm -r node_modules",
