@@ -104,7 +104,7 @@ let jujuCards = (demoDomain) => {
         `<main class="bundle-card__main">` +
           `<div class="bundle-card__meta">` +
             `<h1 class="bundle-card__title">${name}</h1>` +
-            `<p class="bundle-card__by">by <a href="${ownerLink}">${owner}</a></h1>` +
+            `<p class="bundle-card__by">by ${owner}</h1>` +
           `</div>` +
           `<ul class="bundle-card__actions">` +
             `<li class="bundle-card__actions-item--details">` +
@@ -162,7 +162,7 @@ let jujuCards = (demoDomain) => {
           `<img src="${image}" alt="${name}" class="charm-card__image" />` +
           `<h1 class="charm-card__title">${name}</h1>` +
           `<ul class="charm-card__meta">` +
-            `<li class="charm-card__meta-item--by">by <a href="${ownerLink}">${owner}</a></li>` +
+            `<li class="charm-card__meta-item--by">by ${owner}</li>` +
             `${seriesEle}` +
           `</ul>` +
         `</header>` +
