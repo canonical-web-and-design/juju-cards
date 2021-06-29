@@ -9,7 +9,7 @@ if (customDemoDomain) {
 
 let jujuCards = (demoDomain) => {
   let targetClass = "juju-card";
-  let siteDomain = "https://charmhub.io";
+  let siteDomain = "https://jaas.ai";
   let apiAddress = "https://api.jujucharms.com/charmstore/v5/";
   let apiIncludes =
     "?include=id-name" +
@@ -124,9 +124,6 @@ let jujuCards = (demoDomain) => {
       `<input class="bundle-card__actions-field js-clipboard-input" readonly="readonly" value="juju deploy ${id}" onclick="this.select();" id="cli-deploy">` +
       `<button class="bundle-card__actions-copy-to-clipboard js-copy-to-clipboard" onclick="jujuCards.copyToClipboard(this.parentElement);" title="Copy to clipboard">${copyIcon}</button>` +
       `</div>` +
-      `</li>` +
-      `<li class="bundle-card__actions-item--demo">` +
-      `<a href="${addLink}" class="bundle-card__add-button--primary">${deployTitle}</a>` +
       `</li>` +
       `</ul>` +
       `</main>` +
