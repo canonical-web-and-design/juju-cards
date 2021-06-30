@@ -188,9 +188,6 @@ let jujuCards = (demoDomain) => {
       `<button class="charm-card__actions-copy-to-clipboard js-copy-to-clipboard" onclick="jujuCards.copyToClipboard(this);" title="Copy to clipboard">${copyIcon}</button>` +
       `</div>` +
       `</li>` +
-      `<li class="charm-card__actions-item--demo">` +
-      `<a href="${addLink}" class="charm-card__add-button--primary">${deployTitle}</a>` +
-      `</li>` +
       `</ul>` +
       `</main>` +
       `<footer class="charm-card__footer">` +
