@@ -29,13 +29,13 @@
     "serve": "http-server ./build"
   },
   "devDependencies": {
-    "autoprefixer": "^8.4.1",
-    "babel-cli": "^6.26.0",
-    "cssnano": "^3.10.0",
-    "html-minifier-cli": "^0.1.0",
-    "http-server": "0.11.1",
-    "install": "^0.11.0",
-    "node-sass": "^4.9.0",
-    "postcss-cli": "^5.0.0"
+    "autoprefixer": "8.6.5",
+    "babel-cli": "6.26.0",
+    "cssnano": "3.10.0",
+    "html-minifier-cli": "0.1.0",
+    "http-server": "0.12.3",
+    "install": "0.11.2",
+    "node-sass": "4.14.1",
+    "postcss-cli": "5.0.1"
   }
 }
