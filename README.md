@@ -18,4 +18,4 @@ Enjoy!
 
 ## Contributing
 
-If you want to help, please read the [Contributing](https://github.com/CanonicalLtd/juju-cards/blob/master/CONTRIBUTING.md) guide.
+If you want to help, please read the [Contributing](https://github.com/CanonicalLtd/juju-cards/blob/main/CONTRIBUTING.md) guide.
